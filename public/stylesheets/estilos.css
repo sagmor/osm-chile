@@ -188,6 +188,7 @@ img{
 position:absolute;
 z-index:999;
 bottom:0px;
+right: 0px;
 padding:3px 3px;
 background-image:url('../images/trans.png');
 font-size:10px;

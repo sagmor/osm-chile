@@ -10,8 +10,11 @@ OSM.prototype = (function() {
       this.map = new CM.Map(this.options.container, cloudmade);
       this.map.setCenter(this.options.location, 15);
 
+
+      var controllPoss = new CM.ControlPosition(CM.TOP_LEFT, new CM.Size(2, 110));
+
       // Controls
-      this.map.addControl(new CM.LargeMapControl());
+      this.map.addControl(new CM.LargeMapControl(), controllPoss);
       this.map.addControl(new CM.ScaleControl());
       this.map.addControl(new CM.OverviewMapControl());
       
