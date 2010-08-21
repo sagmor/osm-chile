@@ -7,9 +7,16 @@ var OSM = (function() {
   function init() {
     load_map();
     setup_search();
-    setup_right_click();
-    setup_context_menu();
+    //setup_right_click();
+    //setup_context_menu();
   }
+  
+  
+    var mouseX
+    var mouseY
+    
+    var fromPointer = null;
+    var toPointer = null;
   
   function load_map() {
     var cloudmade = new CM.Tiles.CloudMade.Web({key: KEY});
@@ -20,6 +27,50 @@ var OSM = (function() {
     map.addControl(new CM.LargeMapControl());
     map.addControl(new CM.ScaleControl());
     map.addControl(new CM.OverviewMapControl());
+    
+    $('#map').contextMenu('myMenu1', {
+
+      bindings: {
+        'from': function(t) {
+            console.log('From: ' + mouseX + ' ' + mouseY)
+            p = new CM.Point(mouseX, mouseY)
+            if (fromPointer == null) {
+                console.log('From pointer is null')
+            } else {
+                console.log('From pointer is not null')
+                map.removeOverlay(fromPointer)
+            }
+            fromPointer = new CM.Marker(map.fromContainerPixelToLatLng(p), {
+	            title: "Desde aca"
+            });
+            map.addOverlay(fromPointer)
+        },
+        
+        'to': function(t) {
+            console.log('To: ' + mouseX + ' ' + mouseY)
+            p = new CM.Point(mouseX, mouseY)
+            if (toPointer == null) {
+                console.log('To pointer is null')
+            } else {
+                console.log('To pointer is not null')
+                map.removeOverlay(toPointer)
+            }
+            toPointer = new CM.Marker(map.fromContainerPixelToLatLng(p), {
+	            title: "Hasta aca"
+            });
+            map.addOverlay(toPointer)
+        }
+      },
+      onContextMenu: function(e) {
+        maps = $('#map')
+        var x = e.pageX - maps.offset().left;
+    	var y = e.pageY - maps.offset().top;
+
+        mouseX = x
+        mouseY = y
+        return true
+      }
+    });
   }
   
   function setup_search() {
@@ -51,7 +102,7 @@ var OSM = (function() {
   
   function setup_right_click() {
     CM.Event.addListener(map, 'rightclick', function(latlng) {
-    	alert("You have clicked the map at " + latlng.toString(4));
+    	//alert("You have clicked the map at " + latlng.toString(4));
     });
   }
   
@@ -75,7 +126,7 @@ var OSM = (function() {
   };
 })();
 
-
 $(function() {
   OSM.init();
+
 });
