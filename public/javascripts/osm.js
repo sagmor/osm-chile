@@ -1,30 +1,44 @@
-var OSM = (function() {
-  
-  var KEY = 'E282E0EA16754AFB98173BF9A17CF874';
-  
-  var map;
-  
-  function init() {
-    load_map();
-  }
-  
-  function load_map() {
-    var cloudmade = new CM.Tiles.CloudMade.Web({key: KEY});
-    map = new CM.Map('map', cloudmade);
-    map.setCenter(new CM.LatLng(-33.437833, -70.650333), 15);
+function OSM(options) {
+  this.options = options;
+  this.init();
+}
 
-    // Controls
-    map.addControl(new CM.LargeMapControl());
-    map.addControl(new CM.ScaleControl());
-    map.addControl(new CM.OverviewMapControl());
-  }
-  
+OSM.prototype = (function() {
   return {
-    init: init
-  };
+    init: function() {
+      var cloudmade = new CM.Tiles.CloudMade.Web({key: this.options.key});
+      this.map = new CM.Map(this.options.container, cloudmade);
+      this.map.setCenter(this.options.location, 15);
+
+      // Controls
+      this.map.addControl(new CM.LargeMapControl());
+      this.map.addControl(new CM.ScaleControl());
+      this.map.addControl(new CM.OverviewMapControl());
+      
+      this.map.addControl(new OSM.SearchBar(this));
+      
+      this.getCurrentLocation();
+    },
+    
+    getGeocoder: function() {
+      return new CM.Geocoder(this.options.key);
+    },
+    
+    getMap: function() {
+      return this.map;
+    },
+    
+    getCurrentLocation: function() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          // Success
+          var coord = new CM.LatLng(position.coords.latitude, position.coords.longitude);
+          this.map.setCenter(coord);
+        }, function(message) {
+          // Fail
+        });
+      }
+    }
+    
+  }
 })();
-
-
-$(function() {
-  OSM.init();
-});
