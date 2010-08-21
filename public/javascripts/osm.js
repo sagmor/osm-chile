@@ -15,7 +15,7 @@ OSM.prototype = (function() {
       this.map.addControl(new CM.ScaleControl());
       this.map.addControl(new CM.OverviewMapControl());
       
-      this.map.addControl(new OSM.SearchBar(this));
+      // this.map.addControl(new OSM.SearchBar(this));
       
       this.getCurrentLocation();
     },

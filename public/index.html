@@ -4,17 +4,134 @@
   <title>OpenStreetMap Chile</title>
   <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/design.js"></script>
 
   <script type="text/javascript" src="javascripts/osm.js"></script>
   <script type="text/javascript" src="javascripts/search_bar.js"></script>
   <script type="text/javascript" src="javascripts/setup.js"></script>
 
-  <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="stylesheets/estilos.css" type="text/css" media="screen" charset="utf-8">
 
 </head>
 <body>
+  
+   <div class="container">     
+     
+     <div class="menu">
+       <h1><img src="images/logotransparencia.gif" alt="Open Street Map Chile"></h1>
+       <div class="botones">
+           <a href="#"><img src="images/blog.gif"/></a>
+           <a href="#"><img src="images/lista.gif"/></a>
+           <a href="#"><img src="images/wiki.gif"/></a>
+           <a href="#"><img src="images/osmorg.gif"/></a>
+           <a href="#"><img src="images/comparacion.gif"/></a>
+           <a href="#"><img src="images/editar.gif"/></a>
+       </div>
+       <div class="controlador_header">
+         <div class="open">
+             <img src="images/open_header.png">
+         </div>   
+        
+         <div class="close">
+             <img src="images/close_header.png">
+         </div>   
+             
+       </div>
+     </div>
+     
+     <div class="buscador">
+       
+       <div class="formulario">
+         busqueda <br/>
+         <form>
+         <input type="text" name="busqueda" value="Ingresa aqui tu busqueda"/>
+         <input type="button" value="buscar" name="busqueda" class="boton"/>
+         Ruta <br/>
+         <div class="seleccion">
+           selecciona el tipo de ruta<br/>
+           <span class="campo">
+             <input type="radio">
+             <label><img src="images/apie.png" name="rutas a pie"></label>
+           </span>
+           <span class="campo">
+             <input type="radio">
+             <label><img src="images/auto.png" name="rutas en auto"></label>
+           </span>
+           <span class="campo">
+             <input type="radio">
+             <label><img src="images/bici.png" name="rutas en bici"></label>
+           </span>
+         </div>
+         
+         
+         </form>
+       </div>
+       
+       <div class="control_buscador">
+           <img class="open" src="images/lupa.png"/>
+           <img class="close" src="images/lupa.png"/>
+       </div>
+       
+       <img class="pie" src="images/pie_form.png"/>
+       
+     </div>
+     
+     <div class="estilos">
+       <div class="oculta">
+         <div class="control_estilos">
+             <img class="open" src="images/brocha.png"/>
+             <img class="close" src="images/brocha.png"/>
+             
+         </div>
+         <div class="listado">
+           Elige tu estilo<br/>
+           <form>
+             <span class="estilo">
+               <input type="radio">
+               <label>nombre </label>
+             </span>          
+             <span class="estilo">
+               <input type="radio">
+               <label>nombre </label>
+             </span>          
+             <span class="estilo">
+               <input type="radio">
+               <label>nombre </label>
+             </span>          
+           </form>
+         </div>
+        <img class="pie_estilos" src="images/pie_estilos.png"/>
+      </div>
+     </div>
+     
+     <div id="map" class="mapa"></div>
+     
+     <div class="footer">
+     (CC) BY-SA 2010 OpenStreetMap Contributors. Ver la capa Data en <a href="http://OpenStreetMap.org" target="_blank">OpenStreetMap.org</a> para acceder a la atribución e historial de cada nodo o vía.
+   Tiles y enrutamiento por CloudMade.<br/>
+    
+
+     </div>
+     
+   </div>
+  <!--anaytics --> 
+  
+   <script type="text/javascript">
+     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+   </script>
+   <script type="text/javascript">
+     try {
+       var pageTracker = _gat._getTracker("UA-992623-5");
+       pageTracker._trackPageview();
+         } catch(err) {}
+   </script>
+
+
+<!--
   <div id="wrapper">
     <div id="map"></div>
   </div>
+-->
 </body>
 </html>

@@ -1,0 +1,204 @@
+/*
+
+Desarrollo: DigitalesxChile
+
+*/
+
+body {
+  margin:0px 0px;
+  padding:0px 0px;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  
+  font-family:helvetica,arial,sans-serif;
+}
+
+.container {
+  width:100%;
+  height:100%;
+  margin-top:0px;
+  margin-left:0px;
+  top:0px;
+  left:0px;
+  bottom:0px;
+  display:inherit;
+  z-index:1;
+  position:absolute;
+}
+
+.mapa {
+  width:100%;
+  height:100%;
+  margin-top:0px;
+  margin-left:0px;
+  top:0px;
+  left:0px;
+  bottom:0px;
+}
+
+h1{
+margin:0;
+padding:0;  
+float:left;
+margin-top:7px;
+  
+}
+img{
+  border:none;
+}
+
+/* menu */
+.menu{
+  position:absolute;
+  z-index:999;
+  top:20px;
+  background-image:url('../images/trans.png');
+  height:47px;
+  width:300px;
+}
+  .menu .controlador_header{
+    background-image:url("../images/header_slide.png");
+    float:right;
+    height:47px;
+    margin-right:-31px;
+    width:31px;
+  }
+
+.menu .botones{
+     display:none;
+    float:left;
+    margin-left:31px;
+    margin-top:14px;
+  
+}
+
+    .menu .botones a{
+      margin-top:10px;
+      margin-left:15px;
+    }
+
+/* buscador */
+
+.buscador{
+    color:#FFFFFF;
+    font-size:12px;
+    position:absolute;
+    top:75px;
+    width:228px;
+    z-index:999;
+    margin-left:-197px;
+}
+
+.buscador .formulario{
+  width:192px;
+  background-image:url('../images/trans.png');
+  padding-left:5px;
+  float:left;
+}
+
+  .buscador .formulario input{
+    width:173px;
+    border:1px solid #4484b9;   
+    padding:5px; 
+    color:#333;
+    font-size:11px;
+  }
+  
+  .buscador .formulario .boton{
+    margin-top:5px;
+    width:185px;
+    padding:3px;
+    background-color:#4484b9;
+    color:#FFFFFF;
+    font-size:12px;
+  }
+   
+    .buscador .formulario .seleccion{
+      display:block;
+      margin-left:10px;
+      width:200px;
+    }    
+      .buscador .formulario .seleccion .campo{
+        width:20px;
+        
+        
+      } 
+        .buscador .formulario .seleccion .campo input{
+        width:10px;
+        border:none;
+        
+      }
+      
+      .control_buscador{
+        background-image:url('../images/aleta_left.png');
+        background-repeat:no-repeat;
+        width:31px;
+        float:right;
+      }
+      
+      .close{
+        display:none;
+      }
+
+/* estilos */
+.estilos{
+    color:#FFFFFF;
+    font-size:12px;
+    position:absolute;
+    top:75px;
+    width:223px;
+    z-index:999;
+    right:0px;
+    overflow:hidden;
+}
+    .estilos .control_estilos{
+       background-image:url('../images/aleta_right.png');
+       background-repeat:no-repeat;
+       width:31px;
+       float:left;
+       }
+
+    .estilos .listado{
+      width:187px;
+  background-image:url('../images/trans.png');
+
+      padding-left:5px;
+      float:left;      
+    }
+    .pie_estilos{
+      float:right;
+    }
+    .estilos .estilo{
+      width:170px;
+      float:left;
+      margin-left:5px;
+      margin-right:5px;
+      
+    }
+    .oculta{
+      float:right;
+      margin-right:-192px;
+      width:223px;
+    }
+    
+/* footer */
+.footer{
+position:absolute;
+z-index:999;
+bottom:0px;
+padding:3px 3px;
+background-image:url('../images/trans.png');
+font-size:10px;
+color:#fff;
+
+}
+.footer a{
+  color:#fff;
+  font-weight:bold;
+  
+
+
+
+}
