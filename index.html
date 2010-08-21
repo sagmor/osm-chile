@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>OpenStreetMap Chile :: El Mapa Libre del Mundo</title>
+<link rel="shortcut icon" href="http://www.openstreetmap.org/favicon.ico" />
+    <link rel="stylesheet" href="style.css">
+    <script src="OpenLayers.js" type="text/javascript"></script>
+    <script src="config.js" type="text/javascript"></script>
+    <script src="routing.js" type="text/javascript"></script>
+<!--[if IE]>
+<style type="text/css">
+#enrutador {
+visibility: hidden;
+}
+#variables {
+visibility: hidden;
+}
+</style>
+<![endif]-->
+
+    <script src="http://openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+  </head>
+  <body onLoad="init();">
+    <div id="header"></div>
+    <table cellspacing="10" id="logo">
+	<tr>
+    	<td><a href="http://www.openstreetmap.cl/"><img src="http://www.openstreetmap.cl/img/logotransparencia.gif" title="OpenStreetMap Chile" border="0" /></a></td>
+		<td>&nbsp;</td>
+        <td><a href="http://blog.openstreetmap.cl/"><img src="http://www.openstreetmap.cl/img/blog.gif" title="Blog" border="0" /></a></td>
+        <td><a href="http://lists.openstreetmap.org/listinfo/talk-cl"><img src="http://www.openstreetmap.cl/img/lista.gif" title="Lista de Correo" border="0" /></a></td>        
+        <td><a href="http://wiki.openstreetmap.org/index.php/Es:Main_Page"><img src="http://www.openstreetmap.cl/img/wiki.gif" title="Wiki" border="0"/></a></td>
+		<td><a href="http://www.openstreetmap.org/"><img src="http://www.openstreetmap.cl/img/osmorg.gif" title="OpenStreetMap.org" border="0"/></a></td>
+        <td><a href="http://www.openstreetmap.cl/comparacion/"><img src="http://www.openstreetmap.cl/img/comparacion.gif" title="Comparaci&oacute;n" border="0"/></a></td>
+        <td><a id="editlink" href=""><img src="img/editar.gif" title="Editar esta ubicaci&oacute;n en OpenStreetMap.org" border="0" /></a></td>
+  	</tr>
+  </table>
+  <div id="flags"><a href="http://www.openstreetmap.ca/" target="_blank"><img src="http://www.openstreetmap.cl/flags/ca.png" alt="Canada" title="Canada" /></a><a href="http://www.openstreetmap.cz/" target="_blank"><img src="http://www.openstreetmap.cl/flags/cz.png" alt="Česk&aacute; republika" title="Česk&aacute; republika"/></a><a href="http://www.openstreetmap.de/" target="_blank"><img src="http://www.openstreetmap.cl/flags/de.png" title="Deutschland" alt="Deutschland" /></a><a href="http://www.openstreetmap.es/" target="_blank"><img src="http://www.openstreetmap.cl/flags/es.png" alt="Espa&ntilde;a" title="Espa&ntilde;a" /></a><a href="http://www.openstreetmap.org.et/" target="_blank"><img src="http://www.openstreetmap.cl/flags/et.png" alt="Ethiopia" title="Ethiopia" /></a><a href="http://www.openstreetmap.fr/" target="_blank"><img src="http://www.openstreetmap.cl/flags/fr.png" alt="France" title="France" /></a><a href="http://www.openstreetmap.jp/" target="_blank"><img src="http://www.openstreetmap.cl/flags/jp.png" alt="日本" title="日本" /></a><a href="http://www.openstreetmap.nl/" target="_blank"><img src="http://www.openstreetmap.cl/flags/nl.png" alt="Nederland" title="Nederland" /></a><a href="http://www.openstreetmap.org.ph/" target="_blank"><img src="http://www.openstreetmap.cl/flags/ph.png" alt="Pilipinas" title="Pilipinas" /></a><a href="http://www.openstreetmap.pl/" target="_blank"><img src="http://www.openstreetmap.cl/flags/pl.png" alt="Polska" title="Polska"/></a><a href="http://www.openstreetmap.se/" target="_blank"><img src="http://www.openstreetmap.cl/flags/se.png" alt="Sverige" title="Sverige" /></a><a href="http://openstreetmap.tw/" target="_blank"><img src="http://www.openstreetmap.cl/flags/tw.png" alt="中華民國" title="中華民國" /></a><a href="http://www.openstreetmap.org.za/" target="_blank"><img src="http://www.openstreetmap.cl/flags/za.png" alt="Suid-Afrika" title="Suid-Afrika" /></a><a href="http://www.openstreetmap.ch/" target="_blank"><img src="http://www.openstreetmap.cl/flags/ch.png" title="Schweiz" alt="Schweiz" /></a></div>
+<div id="enrutador"></div>
+<table id="variables">
+	<tr>
+    	<td valign="top"><form name="parameters"><input type="radio" name="type" value="motorcar" checked><img src="img/iconCar01.png" alt="Auto" title="Auto"><input type="radio" name="type" value="bicycle"><img src="img/iconBicycle01.png" alt="Bicicleta" title="Bicicleta"><input type="radio" name="type" value="foot"><img src="img/iconFeet01.png" alt="Peaton" title="Peaton"></td>
+        <td valign="top" style="padding-bottom:20px;font-family:Sans, Verdana, Arial, Helvetica, sans-serif;font-size:9px;color:#FFFFFF;"><input type="radio" name="method" value="fast" checked>Rapida<input type="radio" name="method" value="short">Corta</form></td>
+		<td valign="top"><form name="route"><input type="button" style="margin-top:2px;position:relative;" name="from" onClick="elementClick(this);" value="" class="buttons BtnA"><input type="text" name="from_text" onClick="elementClick(this);" onChange="elementChange(this);" value="Calle, Ciudad" tabindex=1 onFocus="this.select()" style="background-image:url(img/bgCampo.png); visibility:hidden; font-family:Sans, Verdana, Arial, Helvetica, sans-serif; font-size:11px; width:1px;height:17px; border:#00CCFF; top:-4px;"><input type="button" style="margin-left:3px; margin-top:2px;position:relative;" name="to" onClick="elementClick(this);" value="" class="buttons BtnB"><input type="text" name="to_text" onClick="elementClick(this);" onChange="elementChange(this);" value="Calle, Ciudad" tabindex=2 onFocus="this.select()" style=" background-image:url(img/bgCampo.png); visibility:hidden; font-family:Sans, Verdana, Arial, Helvetica, sans-serif; font-size:11px; margin-bottom:6px; width:1px;height:17px; border:#00CCFF;position:relative; top:-4px;"><input type="button" style="margin-left:3px;position:relative;" name="calculate" onClick="elementClick(this);" value="" class="buttons BtnRuta"><input type="button" style="margin-left:5px; height:18px; width:48px;position:relative;" name="clear" onClick="elementClick(this);" value="" class="buttons BtnBorrar"><input type="button" style=" margin-left:5px; height:18px; width:18px;position:relative;" name="reverse" onClick="reverseRoute(this);" value="" class="buttons BtnInvertir"></td><td valign="top" style="width:30px;"><div id="status"></div></form></td></tr></table>
+<div id="footer"><a href="http://creativecommons.org/licenses/by-sa/2.0/deed.es_CL" target="_blank" title="Creative Commons :: Atribuci&oacute;n-LicenciarIgual"><img src="img/CC.png" alt="Creative Commons" border="0" style="float:left; margin-left:-30px; margin-right:10px;"></a><a href="http://creativecommons.org/licenses/by-sa/2.0/deed.es_CL" target="_blank" title="Creative Commons :: Atribuci&oacute;n-LicenciarIgual" target="_blank" title="Creative Commons Atribución-LicenciarIgual" style="text-decoration:none; color:#4a8bc0;font-weight:bold;">(CC) BY-SA</a> 2010 <a href="http://www.openstreetmap.org" target="_blank" title="OpenStreetMap" style="text-decoration:none; color:#4a8bc0;font-weight:bold;">OpenStreetMap Contributors</a>. Ver la capa Data en <a href="http://www.openstreetmap.org" target="_blank" title="OpenStreetMap" style="text-decoration:none; color:#4a8bc0;font-weight:bold;">OpenStreetMap.org</a> para acceder a la atribuci&oacute;n e historial de cada nodo o v&iacute;a.<br/>Implementado por <a href="http://www.zambelli.cl" target="_blank" title="zambelliknowledge" style="text-decoration:none; color:#4a8bc0;font-weight:bold;">zambelliknowledge</a> utilizando la librer&iacute;a <a href="http://www.openlayers.org" target="_blank" title="OpenLayers" style="text-decoration:none; color:#4a8bc0;font-weight:bold;">OpenLayers</a> de <a href="http://www.osgeo.org/" title="The Open Source Geospatial Foundation" target="_blank" style="text-decoration:none; color:#4a8bc0;font-weight:bold;">OSGeo</a>, render por <a href="http://www.cloudmade.com/" title="CloudMade" style="text-decoration:none; color:#4a8bc0;font-weight:bold;">CloudMade</a> y enrutamiento de <a href="http://www.yournavigation.org/" target="_blank" title="YOURS" style="text-decoration:none; color:#4a8bc0;font-weight:bold;">YOURS</a>.</div> 
+
+				<div id="map"></div>
+		
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-992623-5");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
