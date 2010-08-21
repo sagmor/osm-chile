@@ -1,35 +1,56 @@
-$(function() {
+var OSM = (function() {
   
-  var key = 'E282E0EA16754AFB98173BF9A17CF874';
+  var KEY = 'E282E0EA16754AFB98173BF9A17CF874';
   
+  function init() {
+    load_map();
+    setup_search();
+  }
   
-  var cloudmade = new CM.Tiles.CloudMade.Web({key: key});
-  var map = new CM.Map('map', cloudmade);
-  map.setCenter(new CM.LatLng(-33.437833, -70.650333), 15);
-  
-  
-  $('#search').submit(function() {
-    var query = $('#query').attr('value');
-    
-    var geocoder = new CM.Geocoder(key);
+  function load_map() {
+    var cloudmade = new CM.Tiles.CloudMade.Web({key: KEY});
+    var map = new CM.Map('map', cloudmade);
+    map.setCenter(new CM.LatLng(-33.437833, -70.650333), 15);
 
-    geocoder.getLocations(query, function(response) {
-    	var southWest = new CM.LatLng(response.bounds[0][0], response.bounds[0][1]),
-    	northEast = new CM.LatLng(response.bounds[1][0], response.bounds[1][1]);
+    // Controls
+    map.addControl(new CM.LargeMapControl());
+    map.addControl(new CM.ScaleControl());
+    map.addControl(new CM.OverviewMapControl());
+  }
+  
+  function setup_search() {
+    $('#search').submit(function() {
+      var query = $('#query').attr('value');
 
-    	map.zoomToBounds(new CM.LatLngBounds(southWest, northEast));
+      var geocoder = new CM.Geocoder(KEY);
 
-    	for (var i = 0; i < response.features.length; i++) {
-    		var coords = response.features[i].centroid.coordinates,
-    			latlng = new CM.LatLng(coords[0], coords[1]);
+      geocoder.getLocations(query, function(response) {
+      	var southWest = new CM.LatLng(response.bounds[0][0], response.bounds[0][1]),
+      	northEast = new CM.LatLng(response.bounds[1][0], response.bounds[1][1]);
 
-    		var marker = new CM.Marker(latlng, {
-    			title: response.features[i].properties.name
-    		});
-    		map.addOverlay(marker);
-    	}
+      	map.zoomToBounds(new CM.LatLngBounds(southWest, northEast));
+
+      	for (var i = 0; i < response.features.length; i++) {
+      		var coords = response.features[i].centroid.coordinates,
+      			latlng = new CM.LatLng(coords[0], coords[1]);
+
+      		var marker = new CM.Marker(latlng, {
+      			title: response.features[i].properties.name
+      		});
+      		map.addOverlay(marker);
+      	}
+      });
+
+      return false;
     });
-    
-    return false;
-  });
+  }
+  
+  return {
+    init: init
+  };
+})();
+
+
+$(function() {
+  OSM.init();
 });
