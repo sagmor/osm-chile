@@ -97,7 +97,7 @@ var OSM = (function() {
   
   function setup_search() {
     $('#search').submit(function() {
-      var query = $('#query').attr('value');
+      var query = $('#search input[type="text"]').attr('value');
 
       var geocoder = new CM.Geocoder(KEY);
 
