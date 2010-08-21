@@ -40,7 +40,7 @@ var OSM = (function() {
     // Controls
     map.addControl(new CM.LargeMapControl());
     map.addControl(new CM.ScaleControl());
-    map.addControl(new CM.OverviewMapControl());
+    // map.addControl(new CM.OverviewMapControl());
     
     $('#map').contextMenu('myMenu1', {
 

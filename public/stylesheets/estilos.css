@@ -152,6 +152,7 @@ img{
     z-index:999;
     right:0px;
     overflow:hidden;
+    display:none;
 }
     .estilos .control_estilos{
        background-image:url('../images/aleta_right.png');
