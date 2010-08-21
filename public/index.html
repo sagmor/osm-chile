@@ -9,6 +9,9 @@
   <script type="text/javascript" src="javascripts/osm.js"></script>
   <script type="text/javascript" src="javascripts/search_bar.js"></script>
   <script type="text/javascript" src="javascripts/setup.js"></script>
+  <script type="text/javascript" src="javascripts/context_menu.js"></script>
+  <script type="text/javascript" src="javascripts/application.js"></script>
+  <script type="text/javascript" src="javascripts/jquery.contextmenu.r2.js"></script>
 
   <link rel="stylesheet" href="stylesheets/estilos.css" type="text/css" media="screen" charset="utf-8">
 
@@ -25,7 +28,7 @@
            <a href="#"><img src="images/wiki.gif"/></a>
            <a href="#"><img src="images/osmorg.gif"/></a>
            <a href="#"><img src="images/comparacion.gif"/></a>
-           <a href="#"><img src="images/editar.gif"/></a>
+           <a href="#" id="permalink_edit"><img src="images/editar.gif"/></a>
        </div>
        <div class="controlador_header">
          <div class="open">
@@ -133,5 +136,16 @@
     <div id="map"></div>
   </div>
 -->
+
+<div class="contextMenu" id="myMenu1">
+
+    <ul>
+
+      <li id="from"><img src="images/undo.png" />Desde aqu&iacute;</li>
+      <li id="to"><img src="images/redo.png" />Hasta aqu&iacute;</li>      
+
+    </ul>
+
+  </div>
 </body>
 </html>

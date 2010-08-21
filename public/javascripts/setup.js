@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
   KEY = "E282E0EA16754AFB98173BF9A17CF874";
   DEFAULT_LOCATION = new CM.LatLng(-33.437833, -70.650333);
   
@@ -7,5 +7,5 @@ $(function() {
     location: DEFAULT_LOCATION,
     container: 'map'
   })
-});
+});*/
 

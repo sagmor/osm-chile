@@ -17,7 +17,7 @@ var OSM = (function() {
         var zoom = map.getZoom()
         //console.log(longitud + ' ' + latitud + ' ' + zoom)
         var url = 'http://www.openstreetmap.org/edit.html?zoom=' + zoom + '&lat=' + latitud + '&lon=' + longitud;
-        console.log(url)
+        window.location = url
     });
   }
   
