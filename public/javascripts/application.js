@@ -39,8 +39,10 @@ var OSM = (function() {
     
     directions = new CM.Directions(map, 'panel', KEY);
 
+    var controlPoss = new CM.ControlPosition(CM.TOP_LEFT, new CM.Size(4, 115));
+
     // Controls
-    map.addControl(new CM.LargeMapControl());
+    map.addControl(new CM.LargeMapControl(), controlPoss);
     map.addControl(new CM.ScaleControl());
     // map.addControl(new CM.OverviewMapControl());
     

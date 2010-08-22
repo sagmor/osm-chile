@@ -2,14 +2,14 @@
   
     $('.control_buscador .open').click(function(){
       $('.buscador').animate({marginLeft:"0px"},500,"swing");
-      $('.wml-map-control').animate({marginLeft:"250px"},500,"swing");
+      $('.wml-map-control').animate({marginLeft:"200px"},500,"swing");
       $(this).hide();
       $('.control_buscador .close').show();
 
     })
     $('.control_buscador .close').click(function(){
       $('.buscador').animate({marginLeft:"-197px"},500,"swing");
-      $('.wml-map-control').animate({marginLeft:"45px"},500,"swing");
+      $('.wml-map-control').animate({marginLeft:"0px"},500,"swing");
      $(this).hide();
       $('.control_buscador .open').show();
     })    

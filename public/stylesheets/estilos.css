@@ -202,7 +202,21 @@ color:#fff;
 }
 
 .wml-map-control{
-margin-top:64px !important;
-margin-left:45px;
+background: url('../images/zoom/zoom-bg.png') no-repeat !important;
+z-index: 1000 !important;
+}
 
+.wml-map-control-bottom {
+  background: url('../images/zoom/zoom-bottom.png') no-repeat !important;
+}
+
+.wml-zoom-label {
+  background: url('../images/zoom/zoom-label.png') no-repeat !important;
+}
+.wml-zoom-label-selected {
+  color: #FF8A00 !important;
+}
+.wml-copyright {
+  /* We are showing our own localized copyright */
+  display: none !important;
 }
