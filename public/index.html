@@ -45,21 +45,21 @@
          busqueda <br/>
          <form id="search">
          <input type="text" name="busqueda" value="Ingresa aqui tu busqueda"/>
-         <input type="button" value="buscar" name="busqueda" class="boton"/>
+         <input type="submit" value="buscar" name="busqueda" class="boton"/>
          Ruta <br/>
-         <div class="seleccion">
+         <div class="seleccion" id="travel-mode">
            selecciona el tipo de ruta<br/>
            <span class="campo">
-             <input type="radio">
-             <label><img src="images/apie.png" name="rutas a pie"></label>
+             <input name="travel-mode" id="travel-foot" type="radio" value="foot">
+             <label for="travel-foot"><img src="images/apie.png" name="rutas a pie"></label>
            </span>
            <span class="campo">
-             <input type="radio">
-             <label><img src="images/auto.png" name="rutas en auto"></label>
+             <input name="travel-mode" id="travel-car" type="radio" value="car" checked="checked">
+             <label for="travel-car"><img src="images/auto.png" name="rutas en auto"></label>
            </span>
            <span class="campo">
-             <input type="radio">
-             <label><img src="images/bici.png" name="rutas en bici"></label>
+             <input name="travel-mode" id="travel-bicycle" type="radio" value="bicycle">
+             <label for="travel-bicycle"><img src="images/bici.png" name="rutas en bici"></label>
            </span>
          </div>
          

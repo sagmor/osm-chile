@@ -37,7 +37,7 @@ var OSM = (function() {
     map = new CM.Map('map', styles[0].tiles);
     map.setCenter(new CM.LatLng(-33.437833, -70.650333), 15);
     
-    directions = new CM.Directions(map, 'panel', KEY)
+    directions = new CM.Directions(map, 'panel', KEY);
 
     // Controls
     map.addControl(new CM.LargeMapControl());
@@ -93,9 +93,16 @@ var OSM = (function() {
   function checkForRouteUpdate() {
     if (fromPointer != null && toPointer != null) {
         var waypoints = [fromPointer.getLatLng(), toPointer.getLatLng()];
-        directions.loadFromWaypoints(waypoints)
+        directions.loadFromWaypoints(waypoints, {
+          travelMode: $('#travel-mode input:checked').attr('value')
+        })
     }
   }
+  
+  $(function() {
+    $('#travel-mode input').change(checkForRouteUpdate);
+  });
+  
   
   function setup_search() {
     $('#search').submit(function() {
@@ -104,6 +111,8 @@ var OSM = (function() {
       var geocoder = new CM.Geocoder(KEY);
 
       geocoder.getLocations(query, function(response) {
+        if (!response.bounds) return false;
+        
       	var southWest = new CM.LatLng(response.bounds[0][0], response.bounds[0][1]),
       	northEast = new CM.LatLng(response.bounds[1][0], response.bounds[1][1]);
 
