@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OpenStreetMap Chile</title>
+  <title>OpenStreetMap Chile :: El Mapa Libre del Mundo</title>
+  <link rel="shortcut icon" href="images/favicon.png" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="Content-Language" content="es" />
   <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/design.js"></script>
@@ -42,11 +45,11 @@
      <div class="buscador">
        
        <div class="formulario">
-         busqueda <br/>
+         <p>Busqueda</p>
          <form id="search">
-         <input type="text" name="busqueda" value="Ingresa aqui tu busqueda"/>
+         <input type="search" placeholder="Ingresa aqui tu busqueda" name="busqueda" value="" id="query"/>
          <input type="submit" value="buscar" name="busqueda" class="boton"/>
-         Ruta <br/>
+         <p>Ruta</p>
          <div class="seleccion" id="travel-mode">
            selecciona el tipo de ruta<br/>
            <span class="campo">

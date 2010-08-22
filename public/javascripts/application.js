@@ -35,7 +35,7 @@ var OSM = (function() {
   
   function load_map() {
     map = new CM.Map('map', styles[0].tiles);
-    map.setCenter(new CM.LatLng(-33.437833, -70.650333), 15);
+    map.setCenter(new CM.LatLng(-39.63953756436669, -71.279296875), 4);
     
     directions = new CM.Directions(map, 'panel', KEY);
 
@@ -108,12 +108,12 @@ var OSM = (function() {
   
   function setup_search() {
     $('#search').submit(function() {
-      var query = $('#search input[type="text"]').attr('value');
+      var query = $('#query').attr('value');
 
       var geocoder = new CM.Geocoder(KEY);
 
       geocoder.getLocations(query, function(response) {
-        if (!response.bounds) return false;
+        if (!response.bounds) return;
         
       	var southWest = new CM.LatLng(response.bounds[0][0], response.bounds[0][1]),
       	northEast = new CM.LatLng(response.bounds[1][0], response.bounds[1][1]);
