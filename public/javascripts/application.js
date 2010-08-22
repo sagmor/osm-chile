@@ -7,8 +7,7 @@ var OSM = (function() {
   function init() {
     load_map();
     setup_search();
-    //setup_right_click();
-    //setup_context_menu();
+    setup_styles();
     
     $('#permalink_edit').click(function() {
         var langlot = map.getCenter()
@@ -19,6 +18,10 @@ var OSM = (function() {
         var url = 'http://www.openstreetmap.org/edit.html?zoom=' + zoom + '&lat=' + latitud + '&lon=' + longitud;
         window.location = url
     });
+    
+    // var layer = new CM.Tiles.CloudMade.Mobile({ key: KEY });
+    // map.setTileLayer(layer);
+    
   }
   
   
@@ -31,8 +34,7 @@ var OSM = (function() {
     var directions = null
   
   function load_map() {
-    var cloudmade = new CM.Tiles.CloudMade.Web({key: KEY});
-    map = new CM.Map('map', cloudmade);
+    map = new CM.Map('map', styles[0].tiles);
     map.setCenter(new CM.LatLng(-33.437833, -70.650333), 15);
     
     directions = new CM.Directions(map, 'panel', KEY)
@@ -130,17 +132,35 @@ var OSM = (function() {
   
   var context_menu;
   
-  function setup_context_menu() {
-    CM.DomEvent.addListener(map.getPane(CM.Map.MAP_PANE), 'contextmenu', function(event){
-
-        CM.DomEvent.preventDefault(event);
-        if(!context_menu){
-            context_menu = new CM.ContextMenu({
-                // 'obj':_obj
-                map: map
-            });
-        }
-        context_menu.show(event);
+  var styles = [
+    {
+      name: 'OSM Chile',
+      tiles: new CM.Tiles.CloudMade.Web({key: KEY, styleId: 1823 })
+    },
+    {
+      name: 'OSM Mapnik',
+      tiles: new CM.Tiles.OpenStreetMap.Mapnik()
+    },
+    {
+      name: 'OpenCycleMap',
+      tiles: new CM.Tiles.OpenStreetMap.Cycle()
+    },
+    {
+      name: 'CloudMade Mobile',
+      tiles: new CM.Tiles.CloudMade.Mobile( { key: KEY } )
+    }
+  ];
+  
+  function setup_styles() {
+    $.each(styles, function(i) {
+      $('#styles').append('<span class="estilo"><input name="style" type="radio" id="style-'+
+      i+'" value="'+i+'"><label for="style-'+i+'">'+
+      this.name + '</label></span>');
+    })
+    
+    $('#style-0').attr('checked', true)
+    $('#styles input').change(function() {
+      map.setTileLayer( styles[this.value].tiles );
     });
   }
   return {
