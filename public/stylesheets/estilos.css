@@ -220,3 +220,8 @@ z-index: 1000 !important;
   /* We are showing our own localized copyright */
   display: none !important;
 }
+
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: text;
+}
