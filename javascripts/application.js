@@ -1,3 +1,10 @@
+/**
+ *
+ * Copyright (c) 2010 Digitales por Chile ( http://digitalesporchile.org )
+ * Dual licensed under the MIT and GPL licenses.
+ * Check LICENCE-MIT and LICENSE-GPL for details.
+ *
+ **/
 var OSM = (function() {
   
   var KEY = 'E282E0EA16754AFB98173BF9A17CF874';

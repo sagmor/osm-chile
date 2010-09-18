@@ -1,3 +1,10 @@
+/**
+ *
+ * Copyright (c) 2010 Digitales por Chile ( http://digitalesporchile.org )
+ * Dual licensed under the MIT and GPL licenses.
+ * Check LICENCE-MIT and LICENSE-GPL for details.
+ *
+ **/
 function OSM(options) {
   this.options = options;
   this.init();

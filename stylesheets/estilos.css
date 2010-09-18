@@ -1,9 +1,10 @@
-/*
-
-Desarrollo: DigitalesxChile
-
-*/
-
+/**
+ *
+ * Copyright (c) 2010 Digitales por Chile ( http://digitalesporchile.org )
+ * Dual licensed under the MIT and GPL licenses.
+ * Check LICENCE-MIT and LICENSE-GPL for details.
+ *
+ **/
 body {
   margin:0px 0px;
   padding:0px 0px;
@@ -193,6 +194,7 @@ padding:3px 3px;
 background-image:url('../images/trans.png');
 font-size:10px;
 color:#fff;
+border-top-left-radius: 5px;
 
 }
 .footer a{
@@ -201,6 +203,7 @@ color:#fff;
 
 }
 
+/* Some hacks to change the map controls style */
 .wml-map-control{
 background: url('../images/zoom/zoom-bg.png') no-repeat !important;
 z-index: 1000 !important;
