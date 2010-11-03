@@ -101,10 +101,10 @@ var OSM = (function() {
   
   function checkForRouteUpdate() {
     if (fromPointer != null && toPointer != null) {
-        var waypoints = [fromPointer.getLatLng(), toPointer.getLatLng()];
-        directions.loadFromWaypoints(waypoints, {
-          travelMode: $('#travel-mode input:checked').attr('value')
-        })
+      var waypoints = [fromPointer.getLatLng(), toPointer.getLatLng()];
+      directions.loadFromWaypoints(waypoints, {
+        travelMode: $('#travel-mode input:checked').attr('value')
+      })
     }
   }
   
