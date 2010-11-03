@@ -32,13 +32,13 @@ var OSM = (function() {
   }
   
   
-    var mouseX
-    var mouseY
-    
-    var fromPointer = null;
-    var toPointer = null;
-    
-    var directions = null
+  var mouseX
+  var mouseY
+  
+  var fromPointer = null;
+  var toPointer = null;
+  
+  var directions = null
   
   function load_map() {
     map = new CM.Map('map', styles[0].tiles);
