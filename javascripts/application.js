@@ -83,16 +83,15 @@ var OSM = (function() {
 
   function move_route_marker(marker, title, mouseX, mouseY) {
     var p = new CM.Point(mouseX, mouseY);
+    var latlng = map.fromContainerPixelToLatLng(p);
     if (marker == null) {
-      //console.log('From pointer is null')
+      marker = new CM.Marker(latlng, {
+        title: title
+      });
+      map.addOverlay(marker);
     } else {
-      //console.log('From pointer is not null')
-      map.removeOverlay(marker)
+      marker.setLatLng(latlng);
     }
-    marker = new CM.Marker(map.fromContainerPixelToLatLng(p), {
-      title: title
-    });
-    map.addOverlay(marker);
     return marker;
   }
 
