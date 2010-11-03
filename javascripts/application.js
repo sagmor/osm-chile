@@ -72,7 +72,7 @@ var OSM = (function() {
       onContextMenu: function(e) {
         maps = $('#map')
         var x = e.pageX - maps.offset().left;
-    	var y = e.pageY - maps.offset().top;
+        var y = e.pageY - maps.offset().top;
 
         mouseX = x
         mouseY = y
