@@ -57,15 +57,13 @@ var OSM = (function() {
 
       bindings: {
         'from': function(t) {
-          fromPointer = move_route_marker(
-            fromPointer, "Desde aca", mouseX, mouseY);
-            update_route();
+          if (!fromPointer) fromPointer = new_route_marker("Desde aca");
+          move_route_marker(fromPointer, mouseX, mouseY);
         },
         
         'to': function(t) {
-          toPointer = move_route_marker(
-            toPointer, "Hasta aca", mouseX, mouseY);
-            update_route();
+          if (!toPointer) toPointer = new_route_marker("Hasta aca");
+          move_route_marker(toPointer, mouseX, mouseY);
         }
       },
       
@@ -80,19 +78,19 @@ var OSM = (function() {
       }
     });
   }
+  
+  function new_route_marker(title) {
+    var marker = new CM.Marker(new CM.LatLng(0, 0), {title: title, draggable: true});
+    CM.Event.addListener(marker, 'dragend', update_route);
+    map.addOverlay(marker);
+    return marker;
+  }
 
-  function move_route_marker(marker, title, mouseX, mouseY) {
+  function move_route_marker(marker, mouseX, mouseY) {
     var p = new CM.Point(mouseX, mouseY);
     var latlng = map.fromContainerPixelToLatLng(p);
-    if (marker == null) {
-      marker = new CM.Marker(latlng, {
-        title: title
-      });
-      map.addOverlay(marker);
-    } else {
-      marker.setLatLng(latlng);
-    }
-    return marker;
+    marker.setLatLng(latlng);
+    update_route();
   }
 
   function update_route() {
