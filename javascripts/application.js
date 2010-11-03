@@ -68,7 +68,7 @@ var OSM = (function() {
 	            title: "Desde aca"
             });
             map.addOverlay(fromPointer)
-            checkForRouteUpdate()
+            update_route();
         },
         
         'to': function(t) {
@@ -84,7 +84,7 @@ var OSM = (function() {
 	            title: "Hasta aca"
             });
             map.addOverlay(toPointer)
-            checkForRouteUpdate()
+            update_route();
         }
       },
       onContextMenu: function(e) {
@@ -99,7 +99,7 @@ var OSM = (function() {
     });
   }
   
-  function checkForRouteUpdate() {
+  function update_route() {
     if (fromPointer != null && toPointer != null) {
       var waypoints = [fromPointer.getLatLng(), toPointer.getLatLng()];
       directions.loadFromWaypoints(waypoints, {
@@ -109,7 +109,7 @@ var OSM = (function() {
   }
   
   $(function() {
-    $('#travel-mode input').change(checkForRouteUpdate);
+    $('#travel-mode input').change(update_route);
   });
   
   
