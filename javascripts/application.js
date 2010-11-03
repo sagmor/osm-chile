@@ -57,36 +57,18 @@ var OSM = (function() {
 
       bindings: {
         'from': function(t) {
-            p = new CM.Point(mouseX, mouseY)
-            if (fromPointer == null) {
-                //console.log('From pointer is null')
-            } else {
-                //console.log('From pointer is not null')
-                map.removeOverlay(fromPointer)
-            }
-            fromPointer = new CM.Marker(map.fromContainerPixelToLatLng(p), {
-	            title: "Desde aca"
-            });
-            map.addOverlay(fromPointer)
+          fromPointer = move_route_marker(
+            fromPointer, "Desde aca", mouseX, mouseY);
             update_route();
         },
         
         'to': function(t) {
-            //console.log('To: ' + mouseX + ' ' + mouseY)
-            p = new CM.Point(mouseX, mouseY)
-            if (toPointer == null) {
-                //console.log('To pointer is null')
-            } else {
-                //console.log('To pointer is not null')
-                map.removeOverlay(toPointer)
-            }
-            toPointer = new CM.Marker(map.fromContainerPixelToLatLng(p), {
-	            title: "Hasta aca"
-            });
-            map.addOverlay(toPointer)
+          toPointer = move_route_marker(
+            toPointer, "Hasta aca", mouseX, mouseY);
             update_route();
         }
       },
+      
       onContextMenu: function(e) {
         maps = $('#map')
         var x = e.pageX - maps.offset().left;
@@ -98,7 +80,22 @@ var OSM = (function() {
       }
     });
   }
-  
+
+  function move_route_marker(marker, title, mouseX, mouseY) {
+    var p = new CM.Point(mouseX, mouseY);
+    if (marker == null) {
+      //console.log('From pointer is null')
+    } else {
+      //console.log('From pointer is not null')
+      map.removeOverlay(marker)
+    }
+    marker = new CM.Marker(map.fromContainerPixelToLatLng(p), {
+      title: title
+    });
+    map.addOverlay(marker);
+    return marker;
+  }
+
   function update_route() {
     if (fromPointer != null && toPointer != null) {
       var waypoints = [fromPointer.getLatLng(), toPointer.getLatLng()];
