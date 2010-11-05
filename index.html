@@ -1,41 +1,42 @@
-<!-- 
- * Copyright (c) 2010 Digitales por Chile ( http://digitalesporchile.org )
- * Dual licensed under the MIT and GPL licenses.
- * Check LICENCE-MIT and LICENSE-GPL for details.
- -->
-
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- 
+   * Copyright (c) 2010 Digitales por Chile ( http://digitalesporchile.org )
+   * Dual licensed under the MIT and GPL licenses.
+   * Check LICENCE-MIT and LICENSE-GPL for details.
+   -->
+  
   <title>OpenStreetMap Chile :: El Mapa Libre del Mundo</title>
   <link rel="shortcut icon" href="images/favicon.png" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="Content-Language" content="es" />
-  <meta name="viewport" content="width=device-width, user-scalable=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-
-  <script type="text/javascript" src="javascripts/jquery.contextmenu.js"></script>
-  
   <script type="text/javascript" src="javascripts/design.js"></script>
+
+  <script type="text/javascript" src="javascripts/context_menu.js"></script>
   <script type="text/javascript" src="javascripts/application.js"></script>
+  <script type="text/javascript" src="javascripts/jquery.contextmenu.r2.js"></script>
 
   <link rel="stylesheet" href="stylesheets/estilos.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold"  />
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
   
    <div class="container">     
      
      <div class="menu">
-       <h1><img src="images/logotransparencia.gif" alt="Open Street Map Chile"></h1>
+       <h1><img src="images/logotransparencia.gif" alt="OpenStreetMap Chile"></h1>
        <div class="botones">
-           <a href="http://blog.openstreetmap.cl/"><img src="images/blog.gif"/></a>
-           <a href="http://lists.openstreetmap.org/listinfo/talk-cl"><img src="images/lista.gif"/></a>
-           <a href="http://wiki.openstreetmap.org/wiki/ES:Main_Page"><img src="images/wiki.gif"/></a>
-           <a href="http://www.openstreetmap.org/"><img src="images/osmorg.gif"/></a>
-           <a href="http://www.openstreetmap.cl/comparacion/"><img src="images/comparacion.gif"/></a>
-           <a href="#" id="permalink_edit"><img src="images/editar.gif"/></a>
+           <a href="http://blog.openstreetmap.cl/">Blog</a>
+           <a href="http://lists.openstreetmap.org/listinfo/talk-cl">Lista</a>
+           <a href="http://wiki.openstreetmap.org/wiki/ES:Main_Page">Wiki</a>
+           <a href="http://www.openstreetmap.org/">OpenStreetMap<span class="org">.org</span></a>
+           <a href="http://www.openstreetmap.cl/comparacion/">Comparación</a>
+           <a href="#" id="permalink_edit">Editar</a>
        </div>
        <div class="controlador_header">
          <div class="open">
@@ -94,7 +95,7 @@
              
          </div>
          <div class="listado">
-           <p>Elige tu estilo</p>
+           <p><strong>Elige tu estilo</strong></p>
            <form id="styles">      
            </form>
          </div>
@@ -105,8 +106,7 @@
      <div id="map" class="mapa"></div>
      
      <div class="footer">
-     (CC) BY-SA 2010 OpenStreetMap Contributors. Ver la capa Data en <a href="http://OpenStreetMap.org" target="_blank">OpenStreetMap.org</a> para acceder a la atribución e historial de cada nodo o vía.
-   Tiles y enrutamiento por <a href="http://cloudmade.com/">CloudMade</a>.<br/>
+     <a href="http://creativecommons.org/licenses/by-sa/2.0/" style="color:#ffffff;text-decoration:none;">(CC) BY-SA</a> 2010 OpenStreetMap Contributors. Tiles, Geocoding y Routing por <a href="http://cloudmade.com/">CloudMade</a>.<br/>
     
 
      </div>

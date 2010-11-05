@@ -50,7 +50,7 @@ var OSM = (function() {
 
     // Controls
     map.addControl(new CM.LargeMapControl(), controlPoss);
-    map.addControl(new CM.ScaleControl());
+    //map.addControl(new CM.ScaleControl());
     // map.addControl(new CM.OverviewMapControl());
     
     $('#map').contextMenu('myMenu1', {
@@ -156,7 +156,7 @@ var OSM = (function() {
       tiles: new CM.Tiles.CloudMade.Web({key: KEY, styleId: 1823 })
     },
     {
-      name: 'OSM Mapnik',
+      name: 'OSM Foundation',
       tiles: new CM.Tiles.OpenStreetMap.Mapnik()
     },
     {
@@ -164,8 +164,32 @@ var OSM = (function() {
       tiles: new CM.Tiles.OpenStreetMap.Cycle()
     },
     {
-      name: 'CloudMade Mobile',
+    name: 'NoNames',
+      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 3 } )
+    },
+    {
+    name: 'Fresh',
+      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 997 } )
+    },
+    {
+      name: 'Mobile',
       tiles: new CM.Tiles.CloudMade.Mobile( { key: KEY } )
+    },
+    {
+    name: 'Tourist',
+      tiles: new CM.Tiles.CloudMade.Web({key: KEY, styleId: 7 })
+    },
+    {
+    name: 'Midnight Commander',
+      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 999 } )
+    },
+    {
+    name: 'Pale Dawn',
+      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 998 } )
+    },
+    {
+    name: 'Red Alert',
+      tiles: new CM.Tiles.CloudMade.Web( {key: KEY, styleId: 8 } )
     }
   ];
   
