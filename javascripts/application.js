@@ -32,13 +32,13 @@ var OSM = (function() {
   }
   
   
-    var mouseX
-    var mouseY
-    
-    var fromPointer = null;
-    var toPointer = null;
-    
-    var directions = null
+  var mouseX
+  var mouseY
+  
+  var fromPointer = null;
+  var toPointer = null;
+  
+  var directions = null
   
   function load_map() {
     map = new CM.Map('map', styles[0].tiles);
@@ -57,40 +57,20 @@ var OSM = (function() {
 
       bindings: {
         'from': function(t) {
-            p = new CM.Point(mouseX, mouseY)
-            if (fromPointer == null) {
-                //console.log('From pointer is null')
-            } else {
-                //console.log('From pointer is not null')
-                map.removeOverlay(fromPointer)
-            }
-            fromPointer = new CM.Marker(map.fromContainerPixelToLatLng(p), {
-	            title: "Desde aca"
-            });
-            map.addOverlay(fromPointer)
-            checkForRouteUpdate()
+          if (!fromPointer) fromPointer = new_route_marker("Desde aca");
+          move_route_marker(fromPointer, mouseX, mouseY);
         },
         
         'to': function(t) {
-            //console.log('To: ' + mouseX + ' ' + mouseY)
-            p = new CM.Point(mouseX, mouseY)
-            if (toPointer == null) {
-                //console.log('To pointer is null')
-            } else {
-                //console.log('To pointer is not null')
-                map.removeOverlay(toPointer)
-            }
-            toPointer = new CM.Marker(map.fromContainerPixelToLatLng(p), {
-	            title: "Hasta aca"
-            });
-            map.addOverlay(toPointer)
-            checkForRouteUpdate()
+          if (!toPointer) toPointer = new_route_marker("Hasta aca");
+          move_route_marker(toPointer, mouseX, mouseY);
         }
       },
+      
       onContextMenu: function(e) {
         maps = $('#map')
         var x = e.pageX - maps.offset().left;
-    	var y = e.pageY - maps.offset().top;
+        var y = e.pageY - maps.offset().top;
 
         mouseX = x
         mouseY = y
@@ -99,17 +79,31 @@ var OSM = (function() {
     });
   }
   
-  function checkForRouteUpdate() {
+  function new_route_marker(title) {
+    var marker = new CM.Marker(new CM.LatLng(0, 0), {title: title, draggable: true});
+    CM.Event.addListener(marker, 'dragend', update_route);
+    map.addOverlay(marker);
+    return marker;
+  }
+
+  function move_route_marker(marker, mouseX, mouseY) {
+    var p = new CM.Point(mouseX, mouseY);
+    var latlng = map.fromContainerPixelToLatLng(p);
+    marker.setLatLng(latlng);
+    update_route();
+  }
+
+  function update_route() {
     if (fromPointer != null && toPointer != null) {
-        var waypoints = [fromPointer.getLatLng(), toPointer.getLatLng()];
-        directions.loadFromWaypoints(waypoints, {
-          travelMode: $('#travel-mode input:checked').attr('value')
-        })
+      var waypoints = [fromPointer.getLatLng(), toPointer.getLatLng()];
+      directions.loadFromWaypoints(waypoints, {
+        travelMode: $('#travel-mode input:checked').attr('value')
+      })
     }
   }
   
   $(function() {
-    $('#travel-mode input').change(checkForRouteUpdate);
+    $('#travel-mode input').change(update_route);
   });
   
   
