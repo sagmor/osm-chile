@@ -5,6 +5,7 @@
  * Check LICENCE-MIT and LICENSE-GPL for details.
  *
  **/
+
 body {
   margin:0px 0px;
   padding:0px 0px;
@@ -69,16 +70,22 @@ img{
 
 .menu .botones{
      display:none;
-    float:left;
-    margin-left:31px;
-    margin-top:14px;
-  
+     float:left;
+     margin-left:31px;
+     margin-top:14px;
 }
 
     .menu .botones a{
-      margin-top:10px;
-      margin-left:15px;
+      margin-left:25px;
+      font-family: 'Droid Sans', Arial, sans-serif;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 17px;
     }
+
+    .menu .botones .org{
+      color: #4a8bc0;
+}
 
 /* buscador */
 
@@ -147,6 +154,7 @@ img{
 .estilos{
     color:#FFFFFF;
     font-size:12px;
+    font-family: 'Droid Sans', Arial, sans-serif;
     position:absolute;
     top:75px;
     width:223px;
@@ -186,6 +194,7 @@ img{
     
 /* footer */
 .footer{
+font-family: 'Droid Sans', Arial, sans-serif;
 position:absolute;
 z-index:999;
 bottom:0px;
@@ -194,7 +203,6 @@ padding:3px 3px;
 background-image:url('../images/trans.png');
 font-size:10px;
 color:#fff;
-border-top-left-radius: 5px;
 
 }
 .footer a{
@@ -203,7 +211,6 @@ border-top-left-radius: 5px;
 
 }
 
-/* Some hacks to change the map controls style */
 .wml-map-control{
 background: url('../images/zoom/zoom-bg.png') no-repeat !important;
 z-index: 1000 !important;
@@ -222,9 +229,4 @@ z-index: 1000 !important;
 .wml-copyright {
   /* We are showing our own localized copyright */
   display: none !important;
-}
-
-* {
-  -webkit-touch-callout: none;
-  -webkit-user-select: text;
 }
