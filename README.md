@@ -15,7 +15,8 @@ How to contribute
 Copyright
 ---------
 
-Copyright (c) 2010 Digitales por Chile ( digitalesporchile.org )
+Copyright (c) 2010 Digitales por Chile ( digitalesporchile.org ) and individual
+contributors.
 
 Dual licensed under the MIT and GPL licenses.
 Check LICENCE-MIT and LICENSE-GPL for details.
