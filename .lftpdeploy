@@ -1,0 +1,3 @@
+open ftp.openstreetmap.cl
+user openstreetmap_cl
+mirror -R -e -X .git/* . httpdocs/2.0
