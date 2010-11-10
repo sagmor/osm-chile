@@ -106,11 +106,9 @@ var OSM = (function() {
     $('#travel-mode input').change(update_route);
   });
   
-  
   function setup_search() {
     $('#search').submit(function() {
-      var query = $('#query').attr('value');
-
+      var query = to_cloudmade_query($('#query').attr('value'));
       var geocoder = new CM.Geocoder(KEY);
 
       geocoder.getLocations(query, function(response) {
@@ -136,6 +134,13 @@ var OSM = (function() {
     });
   }
   
+  function to_cloudmade_query(query) {
+    // Put the first number at the front, and append "Chile"
+    // e.g:
+    // "Cirujano Guzman 25, Providencia" => "25, Cirujano Guzman, Providencia, Chile"
+    return query.replace(/^(.[^0-9]*)\s([0-9]+)(.*)$/, "$2, $1$3") + ", Chile";
+  }
+
   function setup_right_click() {
     CM.Event.addListener(map, 'rightclick', function(latlng) {
     	//alert("You have clicked the map at " + latlng.toString(4));
