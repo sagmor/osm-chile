@@ -110,8 +110,8 @@ var OSM = (function() {
       var query = to_cloudmade_query($('#query').attr('value'));
       var geocoder = new CM.Geocoder(KEY);
 
+      reset_route();
       geocoder.getLocations(query, function(response) {
-        reset_route();
         if (!response.bounds) return;
         
       	var southWest = new CM.LatLng(response.bounds[0][0], response.bounds[0][1]),
