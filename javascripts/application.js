@@ -15,6 +15,7 @@ var OSM = (function() {
     load_map();
     setup_search();
     setup_styles();
+    reset_route();
     
     $('#permalink_edit').click(function() {
         var langlot = map.getCenter()
@@ -31,21 +32,22 @@ var OSM = (function() {
     
   }
   
-  
-  var mouseX
-  var mouseY
-  
-  var fromPointer = null;
-  var toPointer = null;
-  
-  var directions = null
+  var mouseX, mouseY;
+  var directions = null;
+  var waypoints = [];
   
   function load_map() {
     map = new CM.Map('map', styles[0].tiles);
     map.setCenter(new CM.LatLng(-39.63953756436669, -71.279296875), 4);
     
     directions = new CM.Directions(map, 'panel', KEY);
-
+    CM.Event.addListener(directions, 'load', function() {
+        // Keep waypoints in sync after directions changes,
+        // for example, when directions are changed by dragging
+        // the source or destination marker:
+        waypoints = [directions.getMarker(0).getLatLng(),
+                     directions.getMarker(1).getLatLng()];
+    });
     var controlPoss = new CM.ControlPosition(CM.TOP_LEFT, new CM.Size(4, 115));
 
     // Controls
@@ -53,17 +55,13 @@ var OSM = (function() {
     //map.addControl(new CM.ScaleControl());
     // map.addControl(new CM.OverviewMapControl());
     
-    $('#map').contextMenu('myMenu1', {
-
+    $('#map').contextMenu('directions-menu', {
       bindings: {
-        'from': function(t) {
-          if (!fromPointer) fromPointer = new_route_marker("Desde aca");
-          move_route_marker(fromPointer, mouseX, mouseY);
+        'directions-menu-from': function(t) {
+          add_waypoint(0, mouseX, mouseY);
         },
-        
-        'to': function(t) {
-          if (!toPointer) toPointer = new_route_marker("Hasta aca");
-          move_route_marker(toPointer, mouseX, mouseY);
+        'directions-menu-to': function(t) {
+          add_waypoint(1, mouseX, mouseY);
         }
       },
       
@@ -79,27 +77,28 @@ var OSM = (function() {
     });
   }
   
-  function new_route_marker(title) {
-    var marker = new CM.Marker(new CM.LatLng(0, 0), {title: title, draggable: true});
-    CM.Event.addListener(marker, 'dragend', update_route);
-    map.addOverlay(marker);
-    return marker;
-  }
-
-  function move_route_marker(marker, mouseX, mouseY) {
+  function add_waypoint(index, mouseX, mouseY) {
     var p = new CM.Point(mouseX, mouseY);
     var latlng = map.fromContainerPixelToLatLng(p);
-    marker.setLatLng(latlng);
+    waypoints[index] = latlng;
     update_route();
+    directions.getMarker(index).show();
   }
 
   function update_route() {
-    if (fromPointer != null && toPointer != null) {
-      var waypoints = [fromPointer.getLatLng(), toPointer.getLatLng()];
-      directions.loadFromWaypoints(waypoints, {
-        travelMode: $('#travel-mode input:checked').attr('value')
-      })
-    }
+    directions.loadFromWaypoints(waypoints, {
+      travelMode: $('#travel-mode input:checked').attr('value'),
+      draggableWaypoints: true
+    });
+  }
+  
+  function reset_route() {
+    waypoints = [new CM.LatLng(0, 0), new CM.LatLng(0, 0)];
+    update_route();
+    directions.getMarker(0).hide();
+    directions.getMarker(1).hide();
+    $("#directions-menu-from").show();
+    $("#directions-menu-to").hide();
   }
   
   $(function() {
@@ -112,6 +111,7 @@ var OSM = (function() {
       var geocoder = new CM.Geocoder(KEY);
 
       geocoder.getLocations(query, function(response) {
+        reset_route();
         if (!response.bounds) return;
         
       	var southWest = new CM.LatLng(response.bounds[0][0], response.bounds[0][1]),
