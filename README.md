@@ -6,7 +6,7 @@ This is the source code of the Open Street Map Chilean comunity.
 How to contribute
 -----------------
 
- * Take a look at Pivotal Tracker: https://www.pivotaltracker.com/projects/137537 
+ * Take a look at the pending tasks in [our Pivotal Tracker project](https://www.pivotaltracker.com/projects/137537)
  * Pick an story from the backlog.
  * Fork the project.
  * Make your feature addition or bug fix.
