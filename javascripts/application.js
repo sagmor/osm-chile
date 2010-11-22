@@ -35,6 +35,7 @@ var OSM = (function() {
   var mouseX, mouseY;
   var directions = null;
   var waypoints = [];
+  var markers = [];
   
   function load_map() {
     map = new CM.Map('map', styles[0].tiles);
@@ -85,6 +86,11 @@ var OSM = (function() {
     directions.getMarker(index).show();
   }
 
+  function add_marker(marker) {
+    map.addOverlay(marker);
+    markers.push(marker);
+  }
+
   function update_route() {
     directions.loadFromWaypoints(waypoints, {
       travelMode: $('#travel-mode input:checked').attr('value'),
@@ -100,6 +106,11 @@ var OSM = (function() {
     $("#directions-menu-from").show();
     $("#directions-menu-to").hide();
   }
+
+  function reset_markers() {
+    for (var i = 0; i < markers.length; i++) map.removeOverlay(markers[i]);
+    markers = [];
+  }
   
   $(function() {
     $('#travel-mode input').change(update_route);
@@ -109,8 +120,8 @@ var OSM = (function() {
     $('#search').submit(function() {
       var query = to_cloudmade_query($('#query').attr('value'));
       var geocoder = new CM.Geocoder(KEY);
-
       reset_route();
+      reset_markers();
       geocoder.getLocations(query, function(response) {
         if (!response.bounds) return;
         
@@ -120,16 +131,14 @@ var OSM = (function() {
       	map.zoomToBounds(new CM.LatLngBounds(southWest, northEast));
 
       	for (var i = 0; i < response.features.length; i++) {
-      		var coords = response.features[i].centroid.coordinates,
-      			latlng = new CM.LatLng(coords[0], coords[1]);
-
-      		var marker = new CM.Marker(latlng, {
-      			title: response.features[i].properties.name
-      		});
-      		map.addOverlay(marker);
+          var coords = response.features[i].centroid.coordinates,
+          latlng = new CM.LatLng(coords[0], coords[1]);
+          var marker = new CM.Marker(latlng, {
+            title: response.features[i].properties.name
+          });
+          add_marker(marker);
       	}
       }, { bounds: map.getBounds() });
-
       return false;
     });
   }
